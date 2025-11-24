@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:kids_play_mob_app/Screens/home_screen.dart';
+import 'package:kids_play_mob_app/Screens/login/verification_waiting_view.dart';
 import 'package:kids_play_mob_app/Screens/register/register.dart';
 import 'package:kids_play_mob_app/Screens/resetpassword.dart';
 
@@ -137,8 +137,9 @@ class _InputFieldLoginState extends State<InputFieldLogin> {
               }
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                      (route) => false);
+                  MaterialPageRoute(
+                      builder: (context) => const VerificationWaitingView()),
+                  (route) => false);
             },
             child: Container(
               height: 50,

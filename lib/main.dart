@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kids_play_mob_app/Screens/splash_screen.dart';
 
-import 'Screens/Admin panel/Admin_login.dart';
-
-void main() {
-
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  await Hive.initFlutter();
+  await Hive.openBox('app');
 
   runApp(const MyApp());
 }
@@ -26,8 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AdminLogin(),
+      home: const SplashScreen(),
     );
   }
 }
-

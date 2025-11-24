@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>MLKitDigitalInkVersion</key>
+    <string>latest</string>
 	<key>CFBundleDisplayName</key>
 	<string>Kids Play</string>
 	<key>CFBundleExecutable</key>

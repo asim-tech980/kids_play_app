@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
 import 'inputwraperregister.dart';
 
 class Register extends StatelessWidget {
@@ -8,6 +9,7 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,

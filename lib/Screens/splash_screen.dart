@@ -1,6 +1,8 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:kids_play_mob_app/Screens/home_screen.dart';
 import 'package:kids_play_mob_app/Screens/login/login.dart';
 import 'package:lottie/lottie.dart';
 
@@ -15,12 +17,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(
-        Duration(seconds: 3),
-        () => Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const Login()),
-            (route) => false));
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        var box = Hive.box('app');
+
+        bool isOldUser = box.get('isOldUser', defaultValue: false);
+
+        Timer(const Duration(seconds: 3), () {
+          if (isOldUser) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                (route) => false);
+          } else {
+            box.put('isOldUser', true);
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Login()),
+                (route) => false);
+          }
+        });
+      },
+    );
   }
 
   @override

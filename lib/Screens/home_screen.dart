@@ -3,15 +3,19 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kids_play_mob_app/Screens/countinglearn.dart';
 import 'package:kids_play_mob_app/Screens/detail.dart';
+import 'package:kids_play_mob_app/Screens/drawing_view.dart';
 import 'package:kids_play_mob_app/Screens/login/login.dart';
 import 'package:kids_play_mob_app/Screens/videolist.dart';
 import 'package:kids_play_mob_app/model/blog.dart';
 import 'package:kids_play_mob_app/widget/Counting.dart';
 import 'package:kids_play_mob_app/widget/Learning.dart';
 import 'package:kids_play_mob_app/widget/animatedvideo.dart';
+import 'package:kids_play_mob_app/widget/drawing.dart';
 import 'package:kids_play_mob_app/widget/my_horizantal_list.dart';
 
+import '../widget/blogs_view.dart';
 import 'alphabetgrid.dart';
+import 'blogs_list_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -144,6 +148,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const CountingSceen()));
+                },
+              ),
+              GestureDetector(
+                child: const Drawing(),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DrawingScreen()));
+                },
+              ),
+              GestureDetector(
+                child: const BlogsView(),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const BlogsListView()));
                 },
               ),
             ],
