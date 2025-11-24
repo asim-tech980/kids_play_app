@@ -40,7 +40,8 @@ class _UsersListViewState extends State<UsersListView> {
                 border: TableBorder.all(color: Colors.grey.shade300, width: 1),
                 columns: [
                   DataColumn(
-                    columnWidth: FixedColumnWidth(62.w),
+                    columnWidth: FixedColumnWidth(58.w),
+                    headingRowAlignment: MainAxisAlignment.center,
                     label: Text(
                       'Email Address',
                       style: R.textStyles.nunito(
@@ -51,6 +52,8 @@ class _UsersListViewState extends State<UsersListView> {
                     ),
                   ),
                   DataColumn(
+                    columnWidth: FixedColumnWidth(11.w),
+                    headingRowAlignment: MainAxisAlignment.center,
                     label: Text(
                       'Status',
                       style: R.textStyles.nunito(
@@ -61,6 +64,8 @@ class _UsersListViewState extends State<UsersListView> {
                     ),
                   ),
                   DataColumn(
+                    columnWidth: FixedColumnWidth(11.w),
+                    headingRowAlignment: MainAxisAlignment.center,
                     label: Text(
                       'Action',
                       style: R.textStyles.nunito(
@@ -88,48 +93,52 @@ class _UsersListViewState extends State<UsersListView> {
                         ),
                       ),
                       DataCell(
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: data.isVerified
-                                ? Colors.green.shade100
-                                : Colors.orange.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            data.isVerified ? 'Verified' : 'Unverified',
-                            style: R.textStyles.poppins(
+                        Center(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
                               color: data.isVerified
-                                  ? Colors.green.shade800
-                                  : Colors.orange.shade800,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
+                                  ? Colors.green.shade100
+                                  : Colors.orange.shade100,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              data.isVerified ? 'Verified' : 'Unverified',
+                              style: R.textStyles.poppins(
+                                color: data.isVerified
+                                    ? Colors.green.shade800
+                                    : Colors.orange.shade800,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ),
                       ),
                       DataCell(
-                        ElevatedButton(
-                          onPressed: () => toggleVerification(index),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: data.isVerified
-                                ? Colors.red
-                                : Colors.green,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 8,
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () => toggleVerification(index),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: data.isVerified
+                                  ? Colors.red
+                                  : Colors.green,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
                             ),
-                          ),
-                          child: Text(
-                            data.isVerified ? 'Unverify' : 'Verify',
-                            style: R.textStyles.poppins(
-                              color: R.colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
+                            child: Text(
+                              data.isVerified ? 'Unverify' : 'Verify',
+                              style: R.textStyles.poppins(
+                                color: R.colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ),
