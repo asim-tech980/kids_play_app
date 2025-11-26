@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kids_app_admin_panel/resources/resources.dart';
@@ -11,6 +12,19 @@ import 'app_routes.dart';
 import 'features/app/presentation/provider/base_vm.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyAIayErlMPaf5z-Jacd5cXmz-gT_WmXDzs",
+      authDomain: "kids-play-app-7ff98.firebaseapp.com",
+      projectId: "kids-play-app-7ff98",
+      storageBucket: "kids-play-app-7ff98.firebasestorage.app",
+      messagingSenderId: "162626425432",
+      appId: "1:162626425432:web:575353523fe56abad1702d",
+      measurementId: "G-TK3KLYXXYZ",
+    ),
+  );
+
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => BaseVm())],

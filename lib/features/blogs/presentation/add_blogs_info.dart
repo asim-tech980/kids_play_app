@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kids_app_admin_panel/resources/textstyles.dart';
+import 'package:kids_app_admin_panel/services/services.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../resources/resources.dart';
@@ -114,8 +115,15 @@ class _AddBlogsInfoState extends State<AddBlogsInfo> {
                   child: SizedBox(
                     height: 43,
                     child: ElevatedButton(
-                      onPressed: () {
-                        context.pop();
+                      onPressed: () async {
+                        if (titleController.text.isNotEmpty &&
+                            descriptionController.text.isNotEmpty) {
+                          context.pop();
+                          await Services.addBlog(
+                            title: titleController.text,
+                            description: descriptionController.text,
+                          );
+                        }
                       },
                       style: ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(
