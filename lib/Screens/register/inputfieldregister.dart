@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kids_play_mob_app/Screens/login/login.dart';
-import '../home_screen.dart';
+
+import '../../services.dart';
 
 class InputFieldRegister extends StatefulWidget {
   const InputFieldRegister({Key? key}) : super(key: key);
@@ -17,31 +18,6 @@ class _InputFieldRegisterState extends State<InputFieldRegister> {
   final passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    //User Register through Firebase
-    // userlogin() async {
-    //   try {
-    //     await FirebaseAuth.instance
-    //         .createUserWithEmailAndPassword(email: email, password: password);
-    //
-    //   } on FirebaseAuthException catch (e) {
-    //     if (e.code == 'weak-password') {
-    //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    //           backgroundColor: Colors.deepOrange,
-    //           content: Text(
-    //             'Weak Password ',
-    //             style: TextStyle(color: Colors.white, fontSize: 20),
-    //           )));
-    //     } else if (e.code == 'email-already-in-use') {
-    //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    //           backgroundColor: Colors.deepOrange,
-    //           content: Text(
-    //             'User already exist',
-    //             style: TextStyle(color: Colors.white, fontSize: 20),
-    //           )));
-    //     }
-    //   }
-    // }
-
     return Form(
       key: formkey,
       child: Column(
@@ -131,20 +107,25 @@ class _InputFieldRegisterState extends State<InputFieldRegister> {
             onTap: () {
               if (formkey.currentState!.validate()) {
                 setState(() {
-                  email = emailcontroller.text;
-                  password = passwordcontroller.text;
+                  email = emailcontroller.text.trim();
+                  password = passwordcontroller.text.trim();
                 });
+
+                Services.signUpUser(email, password).then(
+                  (value) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        backgroundColor: Colors.deepOrange,
+                        content: Text(
+                          'Register Successfully logged in..',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )));
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Login()),
+                        (route) => false);
+                  },
+                );
               }
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  backgroundColor: Colors.deepOrange,
-                  content: Text(
-                    'Register Successfully logged in..',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  )));
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                      (route) => false);
             },
           ),
           const SizedBox(

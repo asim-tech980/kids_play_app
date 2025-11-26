@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kids_play_mob_app/services.dart';
 import 'package:lottie/lottie.dart';
 
 import '../home_screen.dart';
@@ -12,7 +13,7 @@ class VerificationWaitingView extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        padding: EdgeInsets.all(25),
+        padding: const EdgeInsets.all(25),
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
@@ -52,11 +53,13 @@ class VerificationWaitingView extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const HomeScreen()),
-                      (route) => false);
+                  Services.checkVerifiedDatabase(() {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()),
+                        (route) => false);
+                  });
                 },
               ),
             ],

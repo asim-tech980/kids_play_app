@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -10,6 +11,8 @@ void main() async {
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  Firebase.initializeApp();
 
   await Hive.initFlutter();
   await Hive.openBox('app');

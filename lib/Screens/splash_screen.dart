@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:kids_play_mob_app/Screens/home_screen.dart';
 import 'package:kids_play_mob_app/Screens/login/login.dart';
+import 'package:kids_play_mob_app/Screens/login/verification_waiting_view.dart';
+import 'package:kids_play_mob_app/services.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,12 +26,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
         bool isOldUser = box.get('isOldUser', defaultValue: false);
 
-        Timer(const Duration(seconds: 3), () {
+        Timer(const Duration(seconds: 3), () async {
           if (isOldUser) {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-                (route) => false);
+            if (await Services.checkVerifiedDatabase(() {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  (route) => false);
+            })) {
+              print("User is Verified");
+            } else {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const VerificationWaitingView()),
+                  (route) => false);
+            }
           } else {
             box.put('isOldUser', true);
             Navigator.pushAndRemoveUntil(
