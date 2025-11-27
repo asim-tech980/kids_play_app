@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kids_app_admin_panel/features/blogs/presentation/blogs_views.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../resources/resources.dart';
-import '../../../blogs/presentation/blogs_views.dart';
 import '../../../dashboard/presentation/screens/dashboard_view.dart';
 import '../../../global/responsive_widgets.dart';
 import '../../../users_list/presentation/screens/users_list_view.dart';

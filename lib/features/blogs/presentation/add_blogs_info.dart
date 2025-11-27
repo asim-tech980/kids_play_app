@@ -8,7 +8,9 @@ import '../../../resources/resources.dart';
 import '../../../resources/validations.dart';
 
 class AddBlogsInfo extends StatefulWidget {
-  const AddBlogsInfo({super.key});
+  final bool isFromUpdate;
+  final String? id;
+  const AddBlogsInfo({super.key, required this.isFromUpdate, this.id});
 
   @override
   State<AddBlogsInfo> createState() => _AddBlogsInfoState();
@@ -119,10 +121,18 @@ class _AddBlogsInfoState extends State<AddBlogsInfo> {
                         if (titleController.text.isNotEmpty &&
                             descriptionController.text.isNotEmpty) {
                           context.pop();
-                          await Services.addBlog(
-                            title: titleController.text,
-                            description: descriptionController.text,
-                          );
+                          if (!widget.isFromUpdate) {
+                            await Services.addBlog(
+                              title: titleController.text,
+                              description: descriptionController.text,
+                            );
+                          } else {
+                            await Services.updateBlog(
+                              blogId: widget.id ?? "",
+                              title: titleController.text,
+                              description: descriptionController.text,
+                            );
+                          }
                         }
                       },
                       style: ButtonStyle(

@@ -1,6 +1,6 @@
 class BlogsModel {
-  String title;
-  String description;
+  final String title;
+  final String description;
 
   BlogsModel({required this.title, required this.description});
 }
